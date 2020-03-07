@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+	<h3><a href="">Post</a></h3>
+
+
+
+	<a href="{% url 'logout' %}">Log Out</a>
+
+	<br><br><br><br>
+
+
+	<h1><a href="{% url 'createProfile' %}">Create Profile</a></h1>
+
+
+	<br><br><br><br><br>
+
+
+	<h2>Other Users</h2>
+
+		<ul>
+	{% for user_p in users %}
+		<li><a href="{% url 'profile' user_p.slug %}">{{ user_p }}</a></li>
+	
+	{% endfor %}
+
+	<h2>Friends</h2>
+
+		{% for friend in friends_list %}
+			<a href="#">{{ friend.user.username }}</a>
+		{% endfor %}
+
+        <h2>Send Friend Request</h2>
+
+        {% for s_request in sent_friend_requests %}
+			<li>{{ s_request.to_user.username }}</li>
+		{% endfor %}
+
+		
+
+		<h2>Recieved Friend Request</h2>
+
+		{% for r_request in rec_friend_requests %}
+			<p><a href="#">{{ r_request.from_user.username }}</a></p>
+			<small><a class='btn btn-primary' href="{% url 'request-accept' r_request.from_user.id  %}">Accept</a></small>
+			<small><a class='btn btn-warning' href="{% url 'request-delete' r_request.from_user.id  %}">Ignore</a></small>
+		{% endfor %}
+	</ul>
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

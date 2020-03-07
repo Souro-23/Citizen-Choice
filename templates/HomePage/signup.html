@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+
+<style type="text/css">
+	.main-box{
+		
+
+		
+	}
+	
+	.left-box{
+
+		height:560px;
+		background-color:#040180;
+		
+	}
+	.right-box{
+		
+		height:560px;
+		background-color:white;
+		padding:0px 10px 0px 10px;
+		
+
+	}
+	.padding1{
+		padding:2% 10%  2% 10%;
+		border-style:solid;
+		border-width:0px;
+		border-radius: 10px;
+		box-shadow: 1px 2px 12px -5px rgba(84,81,84,1);
+		height:500px;
+	}
+	.padding2{
+		 padding-top: 4%;
+		 padding-left: 30%;
+		 border-style:solid;
+		border-width:0px;
+		border-radius: 10px;
+		box-shadow: 1px 2px 12px -5px rgba(84,81,84,1);
+		height:60px;
+	}
+	.font{
+
+	}	
+</style>
+
+
+<div class="container main-box"  >
+	<div class="row">
+		<div class="col left-box">
+			<h2>Why Choose Us? </h2>
+
+			<h5>Find all your study materials at one place</h5>
+			<h5>Enjoy unlimitted access to latest qs paper</h5>
+			<h5>Connect with you friend while studying</h5>
+
+
+			
+		</div>
+		
+		<div class="col right-box">
+			<div class="padding1 ">
+				<form method="POST">
+				{% csrf_token %}
+				{{form|crispy}}
+
+				<button class="btn" type="submit">Sign Up</button>
+		
+			    </form>
+			
+		    </div>
+		    <div class="padding2 ">
+		    	<div>
+		    		
+		    	</div>
+		    	<span class="font"><h6>Have an account?<a href="">Login</a></h6></span>
+			
+		    </div>
+	    </div>
+		 
+		
+
+	</div>
+	
+
+
+
+</div>
+
+
+
+
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+<!--<div class="container">
+	<form method="POST">
+		{% csrf_token %}
+		<fieldset class="form-group">
+			<legend class="border-bottom mb-4">Join Today</legend>
+			{{ form|crispy }}
+		</fieldset>
+		<div class="form-group">
+			<button class="btn" type="submit">Sign Up</button>
+		</div>
+		<div class="border-top pt-3">
+			<small class="text-muted">
+				Already have an account
+				<a href="{% url 'login' %}">Sign In</a>
+			</small>
+		</div>
+	</form>
+</div>-->
+
+
+
+
+{% endblock %}
