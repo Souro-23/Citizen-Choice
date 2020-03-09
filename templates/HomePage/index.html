@@ -3,27 +3,32 @@
 
 {% block content %}
 
-	<h3><a href="">Post</a></h3>
-
-
-
 	<a href="{% url 'logout' %}">Log Out</a>
 
 	<br><br><br><br>
+	<form action="{% url 'post-createFeed' %}" method="post" enctype="multipart/form-data">
+	        {% csrf_token %}
+	        {{ feed_form.errors }}
+	        {{ feed_form }}
+	        <input type="submit" value="Submit">
+	      </form>
 
-
+<p> <a href="{% url 'create_course' %}">Create Course</a> </p>
 	<h1><a href="{% url 'createProfile' %}">Create Profile</a></h1>
 
 
 	<br><br><br><br><br>
-
+	<a href="{% url 'post-create' %}"> Post Article </a>
+	<br>
+<a href="{% url 'history' %}"> Post History </a>
+<br><br><br>
 
 	<h2>Other Users</h2>
 
 		<ul>
 	{% for user_p in users %}
 		<li><a href="{% url 'profile' user_p.slug %}">{{ user_p }}</a></li>
-	
+
 	{% endfor %}
 
 	<h2>Friends</h2>
@@ -38,7 +43,7 @@
 			<li>{{ s_request.to_user.username }}</li>
 		{% endfor %}
 
-		
+
 
 		<h2>Recieved Friend Request</h2>
 

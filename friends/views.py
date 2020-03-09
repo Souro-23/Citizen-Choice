@@ -4,7 +4,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404,redirect
 from .models import FriendRequest
 from user_profile.models import Profile
-
+from chat.models import connections
 
 User = get_user_model()
 
@@ -15,6 +15,7 @@ def send_friend_request(request,pk):
 		frequest, created = FriendRequest.objects.get_or_create(
 			from_user=request.user,
 			to_user=user)
+		connections.make_room(request.user,user)
 		return  redirect('home')
 
 def accept_friend_request(request, pk):
@@ -34,6 +35,7 @@ def cancel_friend_request(request, pk):
 			from_user=request.user,
 			to_user=user).first()
 		frequest.delete()
+		connections.loose_room(request.user,user)
 		return redirect('home')
 
 
@@ -71,4 +73,3 @@ def profile_view(request, slug):
 	}
 
 	return render(request, "HomePage/profile.html", context)
-

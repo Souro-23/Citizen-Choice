@@ -30,4 +30,6 @@ urlpatterns = [
     path('profile/', include('user_profile.urls')),
     path('home/', include('home.urls')),
     path('post/', include('post.urls')),
+    path('chat/',include('chat.urls')),
+    path('course/',include('course.urls'))
 ]

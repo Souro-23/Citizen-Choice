@@ -1,0 +1,115 @@
+{% load static %}
+
+<script src="{% static 'jquery.js' %}"></script>
+<script type="text/javascript">
+
+    $(function () {
+        $('form').delegate('.btn_add_sub_topic', 'click', function () {
+            var $this = $(this)
+            var topic_ptr = $this.attr('id').split('-')[1]
+            var $total_topic_sub_topics = $(':input[name=sub_topic_formset_' + topic_ptr + '-TOTAL_FORMS]');
+            var topic_sub_topic_form_count = parseInt($total_topic_sub_topics.val())
+            $total_topic_sub_topics.val(topic_sub_topic_form_count + 1)
+
+            var $new_book_form = $('<fieldset class="topic_sub_topic_form">' +
+                '<legend>Sub Topic</legend>' +
+                '<p>' +
+                '<label for="id_sub_topic_formset_' + topic_ptr + '-' + topic_sub_topic_form_count + '-name">Name:</label>' +
+                '<input id="id_sub_topic_formset_' + topic_ptr + '-' + topic_sub_topic_form_count + '-name" maxlength="256" name="sub_topic_formset_' + topic_ptr + '-' + topic_sub_topic_form_count + '-name" type="text" />' +
+                '<input id="id_sub_topic_formset_' + topic_ptr + '-' + topic_sub_topic_form_count + '-topic" name="sub_topic_formset_' + topic_ptr + '-' + topic_sub_topic_form_count + '-topic" type="hidden" />' +
+                '<input id="id_sub_topic_formset_' + topic_ptr + '-' + topic_sub_topic_form_count + '-id" name="sub_topic_formset_' + topic_ptr + '-' + topic_sub_topic_form_count + '-id" type="hidden" />' +
+                '</p>' +
+                ' <p><label for="id_sub_topic_formset_' + topic_ptr + '-' + topic_sub_topic_form_count + '-content">Content:</label> <textarea name="sub_topic_formset_' + topic_ptr + '-' + topic_sub_topic_form_count + '-content" cols="40" rows="10" id="id_sub_topic_formset_' + topic_ptr + '-' + topic_sub_topic_form_count + '-content"></textarea></p>' +
+                '<p><label for="id_sub_topic_formset_' + topic_ptr + '-' + topic_sub_topic_form_count + '-DELETE">Delete:</label> <input type="checkbox" name="sub_topic_formset_' + topic_ptr + '-' + topic_sub_topic_form_count + '-DELETE" id="id_sub_topic_formset_' + topic_ptr + '-' + topic_sub_topic_form_count + '-DELETE"><input type="hidden" name="sub_topic_formset_' + topic_ptr + '-' + topic_sub_topic_form_count + '-id" id="id_sub_topic_formset_' + topic_ptr + '-' + topic_sub_topic_form_count + '-id"><input type="hidden" name="sub_topic_formset_' + topic_ptr + '-' + topic_sub_topic_form_count + '-topic" id="id_sub_topic_formset_' + topic_ptr + '-' + topic_sub_topic_form_count + '-topic">'+
+                '<input type="hidden" name="sub_topic_formset_' + topic_ptr + '-' + topic_sub_topic_form_count + '-sno" value="' + topic_sub_topic_form_count + '" id="id_sub_topic_formset_' + topic_ptr + '-' + topic_sub_topic_form_count + '-sno">'
+                                   +'</p>' +
+                '</fieldset>'
+            )
+
+            $this.parents('.topic_form').find('.topic_sub_topics').append($new_book_form)
+        })
+
+        $('form').delegate('#btn_add_topic', 'click', function () {
+            var $total_topics = $(':input[name=topic_formset-TOTAL_FORMS]');
+            topic_form_count = parseInt($total_topics.val())
+            $total_topics.val(topic_form_count + 1)
+
+            book_form =
+                 '<fieldset class="topic_sub_topic_form">' +
+                '<legend>Sub Topic</legend>' +
+                '<p>' +
+                '<label for="id_sub_topic_formset_' + topic_form_count + '-0-name">Name:</label>' +
+                '<input id="id_sub_topic_formset_' + topic_form_count + '-0-name" maxlength="256" name="sub_topic_formset_' + topic_form_count + '-0-name" type="text" />' +
+                '<input id="id_sub_topic_formset_' + topic_form_count + '-0-topic" name="sub_topic_formset_' + topic_form_count + '-0-topic" type="hidden" />' +
+                '<input id="id_sub_topic_formset_' + topic_form_count + '-0-id" name="sub_topic_formset_' + topic_form_count + '-0-id" type="hidden" />' +
+                '</p>' +
+                ' <p><label for="id_sub_topic_formset_' + topic_form_count + '-0-content">Content:</label> <textarea name="sub_topic_formset_' + topic_form_count + '-0-content" cols="40" rows="10" id="id_sub_topic_formset_' + topic_form_count + '-0-content"></textarea></p>' +
+                '<p><label for="id_sub_topic_formset_' + topic_form_count + '-0-DELETE">Delete:</label> <input type="checkbox" name="sub_topic_formset_' + topic_form_count + '-0-DELETE" id="id_sub_topic_formset_' + topic_form_count + '-0-DELETE"><input type="hidden" name="sub_topic_formset_' + topic_form_count + '-0-id" id="id_sub_topic_formset_' + topic_form_count + '-0-id"><input type="hidden" name="sub_topic_formset_' + topic_form_count + '-0-topic" id="id_sub_topic_formset_' + topic_form_count + '-0-topic"></p>' +
+                '</fieldset>';
+
+            $new_topic_form = $(
+                '<fieldset class="topic_form">' +
+                '<legend>Topic</legend>' +
+                '<p>' +
+                '<label for="id_topic_formset-' + topic_form_count + '-name">Name:</label>' +
+                '<input id="id_topic_formset-' + topic_form_count + '-name" maxlength="256" name="topic_formset-' + topic_form_count + '-name" type="text" />' +
+                '<input id="id_topic_formset-' + topic_form_count + '-publisher" name="topic_formset-' + topic_form_count + '-publisher" type="hidden" />' +
+                '<input id="id_topic_formset-' + topic_form_count + '-id" name="topic_formset-' + topic_form_count + '-id" type="hidden" />' +
+                 '<p><label for="id_topic_formset-' + topic_form_count + '-DELETE">Delete:</label> <input type="checkbox" name="topic_formset-' + topic_form_count + '-DELETE" id="id_topic_formset-' + topic_form_count + '-DELETE"><input type="hidden" name="topic_formset-' + topic_form_count + '-sno" value="' + topic_form_count + '" id="id_topic_formset-' + topic_form_count + '-sno"><input type="hidden" name="topic_formset-' + topic_form_count + '-id" id="id_topic_formset-' + topic_form_count + '-id"><input type="hidden" name="topic_formset-' + topic_form_count + '-course" id="id_topic_formset-' + topic_form_count + '-course"></p>' +
+
+                ' <input type="hidden" name="topic_formset-' + topic_form_count + '-sno" value="' + topic_form_count + '" id="id_topic_formset-' + topic_form_count + '-sno"> '
+                +
+                '<div class="topic_sub_topics">' +
+                '<input id="id_sub_topic_formset_' + topic_form_count + '-TOTAL_FORMS" name="sub_topic_formset_' + topic_form_count + '-TOTAL_FORMS" type="hidden" value="1" />' +
+                '<input id="id_sub_topic_formset_' + topic_form_count + '-INITIAL_FORMS" name="sub_topic_formset_' + topic_form_count + '-INITIAL_FORMS" type="hidden" value="0" />' +
+                '<input id="id_sub_topic_formset_' + topic_form_count + '-MAX_NUM_FORMS" name="sub_topic_formset_' + topic_form_count + '-MAX_NUM_FORMS" type="hidden" value="1000" />' +
+                book_form +
+                '</div >'
+                +
+                '<p><input type="button" value="Add Sub Topic" class="btn_add_sub_topic" id="topic-' + topic_form_count + '"/></p>' +
+                '</fieldset >'
+            )
+
+            $('#topics').append($new_topic_form)
+        })
+    })
+</script>
+
+<h1>Add Course</h1>
+<form action="{% url 'create_course'%}" method="post" enctype="multipart/form-data" >
+    {% csrf_token %}
+    {{ form.as_p }}
+
+
+    <div id="topics">
+        {{ topic_formset.management_form }}
+        {% for form in topic_formset %}
+            <fieldset class="topic_form">
+                <legend>Topic</legend>
+                {{ form.as_p }}
+
+                <div class="topic_sub_topics">
+                    {{ sub_topic_formset.management_form }}
+                    {% for form in sub_topic_formset %}
+                        <fieldset class="topic_sub_topic_form">
+                            <legend>Sub Topic</legend>
+                            {{ form.as_p }}
+
+                            {{ image.management_form }}
+
+                                {% csrf_token %}
+                                {{ image.as_p }}
+
+
+                        </fieldset>
+                    {% endfor %}
+
+
+                </div>
+                 <p><input type="button" value="Add Sub Topic" class="btn_add_sub_topic" id="topic-{{ forloop.counter0 }}"/></p>
+            </fieldset>
+        {% endfor %}
+    </div>
+    <p><input type="button" id="btn_add_topic" value="Add Topic"/></p>
+    <p><input type="submit" value="Save"></p>
+</form>

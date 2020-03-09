@@ -1,0 +1,6 @@
+{% load static %}
+<form action="{% url 'post-createFeed' %}" method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{ form }}
+  <input type="submit" value="Submit">
+</form>

@@ -1,0 +1,30 @@
+
+
+{% for post in posts.all %}
+<div class="container" style="border-width: 20px; border-color: grey;margin: 10px;">
+  {% if post.image %}
+  <img src="{{ post.image.url }}" height="50vh" />
+  {% endif%}
+  <!--display the title -->
+  <p> {{ post.title }} </p>
+  <p> {{ post.abstract }} </p>
+
+  <a href="{% url 'edit_post' post.id  %}"> Edit Post</a>
+
+</div>
+{% endfor %}
+
+
+
+
+      {% for feed in feeds.all %}
+      <div class="container" style="border-width: 20px; border-color: grey;margin: 10px;">
+        {% if feed.image %}
+        <img src="{{ feed.image.url }}" height="50vh" />
+        {% endif%}
+        <!--display the title -->
+        <p> {{ feed.body }} </p>
+
+        <a href="{% url 'edit_Feed' feed.id  %}""> Edit Post</a>
+      </div>
+      {% endfor %}
